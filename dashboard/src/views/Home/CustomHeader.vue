@@ -9,11 +9,13 @@
 
         <div class="flex text-sm sm:text-base">
           <button
+            @click="() => emit('create-account')"
             class="px-3 sm:px-6 py-2 font-bold rounded-full text-white focus:outline-none"
           >
             Crie uma conta
           </button>
           <button
+            @click="() => emit('login')"
             class="px-4 sm:px-6 py-2 font-bold bg-white rounded-full text-brand-main focus:outline-none"
           >
             Entrar
@@ -21,7 +23,7 @@
         </div>
       </div>
 
-      <div class="flex flex-col mt-28">
+      <div class="flex flex-col md:mt-28">
         <h1 class="text-4xl font-black text-white">
           Tenha um feedback. <br>
           E faça seus clientes mais <br class="hidden lg:inline-block">
@@ -33,6 +35,7 @@
         </p>
         <div>
           <button
+            @click="() => emit('create-account')"
             class="my-8 px-6 py-2 font-bold bg-white rounded-full text-brand-main focus:outline-none"
           >
             Crie uma conta grátis
@@ -46,7 +49,9 @@
 
 <script>
 export default {
-  name: 'CustomHeader'
+  setup (_, { emit }) {
+    return { emit }
+  }
 }
 </script>
 
