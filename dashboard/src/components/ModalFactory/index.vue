@@ -16,7 +16,7 @@
           class="flex flex-col overflow-hidden bg-white rounded-lg
           animate__animated animate__fadeInDown animate__faster"
         >
-          <div class="flex flex-col px-8 py-4 md:px-12 md:py-10 bg-white">
+          <div class="flex flex-col px-8 py-4 sm:px-12 sm:py-10 bg-white">
             <component :is="state.component" />
           </div>
         </div>

@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-between">
-    <h1 class="text-xl md:text-4xl font-black text-gray-800">
+    <h1 class="text-xl sm:text-4xl font-black text-gray-800">
       Entre na sua conta
     </h1>
 
@@ -62,22 +62,37 @@
 
 <script>
 import { reactive } from 'vue'
+import { useField } from 'vee-validate'
 import useModal from '../../hooks/useModal'
+import {
+  validateEmptyAndEmail,
+  validateEmptyAndLength6
+} from '../../utils/validators'
 
 export default {
   setup () {
     const modal = useModal()
 
+    const {
+      value: emailValue,
+      errorMessage: emailErrorMessage
+    } = useField('email', validateEmptyAndEmail)
+
+    const {
+      value: passwordValue,
+      errorMessage: passwordErrorMessage
+    } = useField('password', validateEmptyAndLength6)
+
     const state = reactive({
       hasErrors: false,
       isLoading: false,
       email: {
-        value: '',
-        errorMessage: ''
+        value: emailValue,
+        errorMessage: emailErrorMessage
       },
       password: {
-        value: '',
-        errorMessage: ''
+        value: passwordValue,
+        errorMessage: passwordErrorMessage
       }
     })
 
