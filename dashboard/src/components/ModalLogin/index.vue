@@ -54,7 +54,8 @@
         :class="{ 'opacity-50': state.isLoading }"
         class="px-8 py-3 mt-10 text-2xl font-bold text-white rounded-full bg-brand-main focus:outline-none transition-all duration-150"
       >
-        Entrar
+        <icon v-if="state.isLoading" name="loading" class="animate-spin" />
+        <span v-else>Entrar</span>
       </button>
     </form>
   </div>
@@ -65,14 +66,16 @@ import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useField } from 'vee-validate'
 import { useToast } from 'vue-toastification'
+import Icon from '../Icon'
 import useModal from '../../hooks/useModal'
 import {
   validateEmptyAndEmail,
-  validateEmptyAndLength6
+  validateEmptyAndLength3
 } from '../../utils/validators'
 import services from '../../services'
 
 export default {
+  components: { Icon },
   setup () {
     const modal = useModal()
     const router = useRouter()
@@ -86,7 +89,7 @@ export default {
     const {
       value: passwordValue,
       errorMessage: passwordErrorMessage
-    } = useField('password', validateEmptyAndLength6)
+    } = useField('password', validateEmptyAndLength3)
 
     const state = reactive({
       hasErrors: false,
@@ -121,7 +124,6 @@ export default {
         } else if (errors.status === 400) {
           toast.error('Ocorreu um erro ao fazer login')
         }
-
       } catch (error) {
         state.hasErrors = !!error
         toast.error('Ocorreu um erro ao fazer login')
@@ -132,6 +134,7 @@ export default {
 
     return {
       state,
+      handleSubmit,
       close: modal.close
     }
   }

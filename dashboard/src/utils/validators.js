@@ -1,10 +1,10 @@
-export function validateEmptyAndLength6 (value) {
+export function validateEmptyAndLength3 (value) {
   if (!value) {
     return '*Este campo é obrigatório'
   }
 
-  if (value.length < 6) {
-    return '*No mínimo 6 caracteres'
+  if (value.length < 3) {
+    return '*No mínimo 3 caracteres'
   }
 
   return true
