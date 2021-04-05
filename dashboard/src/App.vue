@@ -8,6 +8,7 @@ import { watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import ModalFactory from './components/ModalFactory'
 import services from './services'
+import { setCurrentUser } from './store/user'
 
 export default {
   components: { ModalFactory },
@@ -24,6 +25,7 @@ export default {
         }
         // redireciona p/ Home caso o token não seja valido (401)
         const { data } = await services.users.getMe()
+        setCurrentUser(data)
       }
     })
   }
