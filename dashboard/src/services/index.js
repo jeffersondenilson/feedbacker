@@ -1,6 +1,6 @@
 import axios from 'axios'
 import AuthService from './auth'
-import UsersService from './users'
+import UsersService from './user'
 import router from '../router'
 import { setGlobalLoading } from '../store/global'
 // TODO: criar variaveis de ambiente
@@ -47,7 +47,7 @@ const handleError = (error) => {
 
 httpClient.interceptors.response.use((response) => {
   setGlobalLoading(false)
-  return response 
+  return response
 }, handleError)
 
 export default {
