@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-between w-4/5 max-w-6xl py-10">
-    <div class="w-28 lg:w-36">
+    <div class="hidden sm:block w-24 lg:w-36">
       <img
         class="w-full"
         src="../../assets/images/logo.png"
@@ -9,24 +9,24 @@
     </div>
 
     <div class="flex">
-      <ul class="flex list-none">
+      <ul class="flex flex-wrap justify-center items-center list-none">
         <li
           @click="() => router.push({ name: 'Credentials' })"
-          class="px-6 py-2 mr-2 font-bold text-white
+          class="px-4 md:px-6 py-2 mr-2 font-bold text-white
           rounded-full cursor-pointer focus:outline-none"
         >
           Credenciais
         </li>
         <li
           @click="() => router.push({ name: 'Feedbacks' })"
-          class="px-6 py-2 mr-2 font-bold text-white
+          class="px-4 md:px-6 py-2 mr-2 font-bold text-white
           rounded-full cursor-pointer focus:outline-none"
         >
           Feedbacks
         </li>
         <li
           @click="handleLogout()"
-          class="px-6 py-2 font-bold bg-white text-brand-main
+          class="mt-2 px-6 py-2 text-sm md:text-base font-bold bg-white text-brand-main
           rounded-full cursor-pointer focus:outline-none"
         >
           {{ logoutLabel }}
