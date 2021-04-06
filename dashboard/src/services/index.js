@@ -37,7 +37,7 @@ const handleError = (error) => {
   }
 
   if (error.request.status === 401) {
-    // TODO: remover token?
+    window.localStorage.removeItem('token')
     router.push({ name: 'Home' })
   }
 
