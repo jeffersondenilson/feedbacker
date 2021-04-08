@@ -33,7 +33,8 @@
         class="flex py-3 pl-5 mt-2 rounded justify-between items-center
         bg-brand-gray w-full lg:w-1/2"
       >
-        <span>{{ store.User.currentUser.apiKey }}</span>
+        <span v-if="state.hasError">Erro ao carregar a chave de api</span>
+        <span v-else>{{ store.User.currentUser.apiKey }}</span>
         <div class="flex ml-20 mr-1">
           <icon
             name="copy"
@@ -54,11 +55,20 @@
         Coloque o script abaixo no seu site para começar a receber feedbacks:
       </p>
 
+      <content-loader
+        v-if="store.Global.isLoading || state.isLoading"
+        class="rounded"
+        width="600px"
+        height="50px"
+      />
+
       <div
+        v-else
         class="py-3 pl-5 pr-20 mt-2 rounded bg-brand-gray
         w-full lg:w-1/2 overflow-x-scroll"
       >
-        <pre>
+        <span v-if="state.hasError">Erro ao carregar o script</span>
+        <pre v-else>
           &lt;script src="https://jeffersondenilson-feedbacker-widget.netlify.app?api_key={{store.User.currentUser.apiKey}}" /&gt;
         </pre>
       </div>
@@ -67,24 +77,66 @@
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { reactive, watch } from 'vue'
+import { useToast } from 'vue-toaster'
 import ContentLoader from '../../components/ContentLoader'
 import HeaderLogged from '../../components/HeaderLogged'
 import Icon from '../../components/Icon'
+import services from '../../services'
+// import { setApiKey } from '../../store/user'
 import useStore from '../../hooks/useStore'
 import { brand as brandColors } from '../../../palette'
 
 export default {
   components: { ContentLoader, HeaderLogged, Icon },
   setup () {
+    const toast = useToast()
+    const store = useStore()
+    
     const state = reactive({
+      hasError: false,
       isLoading: false,
     })
-    const store = useStore()
+
+    watch(() => store.Global.isLoading, () => {
+      if (!store.Global.isLoading && !store.User.currentUser.apiKey) {
+        handleError(true)
+      }
+    })
+
+    function handleError (error) {
+      state.isLoading = false
+      state.hasError = !!error
+    }
+
+    async function handleGenerateApiKey () {
+      try {
+        state.isLoading = true
+        const { data } = await services.users.generateApiKey()
+        // setApiKey(data.apiKey)
+        store.User.setApiKey(data.apiKey)
+        state.isLoading = false
+      } catch (error) {
+        handleError(error)
+      }
+    }
+
+    async function handleCopy () {
+      toast.clear()
+
+      try {
+        await navigator.clipboard.writeText(store.User.currentUser.apiKey)
+        toast.success('Copiado!')
+      } catch (error) {
+        handleError(error)
+      }
+    }
 
     return {
       state,
       store,
+      handleGenerateApiKey,
+      handleCopy,
       brandColors
     }
   }

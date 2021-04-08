@@ -1,6 +1,6 @@
 import axios from 'axios'
 import AuthService from './auth'
-import UsersService from './user'
+import UsersService from './users'
 import router from '../router'
 import { setGlobalLoading } from '../store/global'
 // TODO: criar variaveis de ambiente
