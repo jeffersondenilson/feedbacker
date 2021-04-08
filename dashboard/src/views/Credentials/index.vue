@@ -21,7 +21,15 @@
         Esta aqui é sua chave de api
       </p>
 
+      <content-loader
+        v-if="store.Global.isLoading || state.isLoading"
+        class="rounded"
+        width="600px"
+        height="50px"
+      />
+
       <div
+        v-else
         class="flex py-3 pl-5 mt-2 rounded justify-between items-center
         bg-brand-gray w-full lg:w-1/2"
       >
@@ -59,17 +67,23 @@
 </template>
 
 <script>
+import { reactive } from 'vue'
+import ContentLoader from '../../components/ContentLoader'
 import HeaderLogged from '../../components/HeaderLogged'
 import Icon from '../../components/Icon'
 import useStore from '../../hooks/useStore'
 import { brand as brandColors } from '../../../palette'
 
 export default {
-  components: { HeaderLogged, Icon },
+  components: { ContentLoader, HeaderLogged, Icon },
   setup () {
+    const state = reactive({
+      isLoading: false,
+    })
     const store = useStore()
 
     return {
+      state,
       store,
       brandColors
     }
