@@ -16,23 +16,23 @@ export default {
   props: {
     maxWidth: {
       type: Number,
-      default: 100,
+      default: 100
     },
     minWidth: {
       type: Number,
-      default: 80,
+      default: 80
     },
     animationDuration: {
       type: String,
-      default: '1.6s',
+      default: '1.6s'
     },
     height: {
       type: String,
-      default: '1rem',
+      default: '1rem'
     },
     width: {
       type: String,
-      default: '1rem',
+      default: '1rem'
     }
   },
   setup (props) {
