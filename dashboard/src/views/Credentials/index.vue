@@ -36,8 +36,8 @@
         <span v-if="state.hasError" class="text-brand-danger font-bold">
           Erro ao carregar a chave de api
         </span>
-        <span v-else>{{ store.User.currentUser.apiKey }}</span>
-        <div class="flex ml-20 mr-1" v-if="!state.hasError">
+        <pre v-else class="overflow-x-auto">{{ store.User.currentUser.apiKey }}</pre>
+        <div class="flex ml-4 md:ml-20 mr-1" v-if="!state.hasError">
           <icon
             name="copy"
             :color="brandColors.graydark"
@@ -68,14 +68,14 @@
 
       <div
         v-else
-        class="flex py-3 pl-5 pr-15 mt-2 rounded justify-between bg-brand-gray
+        class="flex py-3 pl-5 mt-2 rounded justify-between bg-brand-gray
         w-full lg:w-1/2"
       >
         <span v-if="state.hasError" class="text-brand-danger font-bold">
           Erro ao carregar o script
         </span>
         <pre v-else class="overflow-x-scroll">{{ computedScript }}</pre>
-        <div class="flex ml-20 mr-1" v-if="!state.hasError">
+        <div class="flex ml-4 md:ml-20 mr-1" v-if="!state.hasError">
           <icon
             name="copy"
             :color="brandColors.graydark"
