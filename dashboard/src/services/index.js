@@ -1,5 +1,6 @@
 import axios from 'axios'
 import AuthService from './auth'
+import FeedbacksService from './feedbacks'
 import UsersService from './users'
 import router from '../router'
 import { setGlobalLoading } from '../store/global'
@@ -52,5 +53,6 @@ httpClient.interceptors.response.use((response) => {
 
 export default {
   auth: AuthService(httpClient),
-  users: UsersService(httpClient)
+  users: UsersService(httpClient),
+  feedbacks: FeedbacksService(httpClient)
 }

@@ -1,9 +1,9 @@
 <template>
   <div
-    :style="{width: computedWidth, height}"
+    :style="{ width: computedWidth, height }"
     class="opacity-75 content-loader"
   >
-    <span :style="{animationDuration}" class="content-loader--fx"></span>
+    <span :style="{ animationDuration }" class="content-loader--fx"></span>
     <!-- conteúdo passado dentro de content-loader -->
     <slot />
   </div>
