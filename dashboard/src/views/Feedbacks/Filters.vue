@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col">
-    <h1 class="text-2xl font-regular text-brand-darkgray">
+    <h1 class="text-2xl font-regular text-brand-graydark">
       Filtros
     </h1>
 
@@ -36,7 +36,8 @@
 import { reactive } from 'vue'
 import services from '../../services'
 import useStore from '../../hooks/useStore'
-
+import { LABELS, COLORS } from '@/utils/constants'
+/*
 const LABELS = {
   all: 'Todos',
   issue: 'Problemas',
@@ -50,7 +51,7 @@ const COLORS = {
   idea: 'brand-warning',
   other: 'brand-graydark'
 }
-
+*/
 function applyFiltersStructure (summary) {
   return Object.keys(summary).reduce((acc, cur) => {
     const currentFilter = {
