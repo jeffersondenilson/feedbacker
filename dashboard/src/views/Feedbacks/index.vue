@@ -15,7 +15,7 @@
   <div class="flex justify-center w-full pb-20">
     <div class="w-4/5 max-w-6xl py-10 grid grid-cols-4 gap-2">
       <div>
-        <h1 class="text-3xl font-black text-brand-darkgray">
+        <h1 class="text-3xl font-black text-brand-graydark">
           Listagem
         </h1>
         <suspense>
@@ -43,24 +43,73 @@
         >
           Ainda nenhum feedback recebido
         </p>
+
+        <feedback-card-loading v-if="state.isLoading" />
+        <feedback-card
+          v-else
+          v-for="(feedback, index) in state.feedbacks"
+          :key="feedback.id"
+          :is-opened="index === 0"
+          :feedback="feedback"
+          class="mb-8"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { reactive, onMounted } from 'vue'
+import FeedbackCard from '@/components/FeedbackCard'
+import FeedbackCardLoading from '@/components/FeedbackCard/Loading'
 import Filters from './Filters'
 import FiltersLoading from './FiltersLoading'
 import HeaderLogged from '../../components/HeaderLogged'
+import { services } from '@/services'
 
 export default {
-  components: { HeaderLogged, Filters, FiltersLoading },
+  components: {
+    FeedbackCard,
+    FeedbackCardLoading
+    Filters,
+    FiltersLoading,
+    HeaderLogged
+  },
   setup () {
     const state = reactive({
       isLoading: false,
       feedbacks: [],
+      currentFeedbackType: '',
+      pagination: {
+        limit: 5,
+        offset: 0
+      },
       hasError: false
     })
+
+    onMounted(() => {
+      fetchFeedbacks()
+    })
+
+    function handleErrors (error) {
+      state.hasError = !!error
+    }
+
+    async function fetchFeedbacks () {
+      try {
+        state.isLoading = true
+        const { data } = await services.feedbacks.getAll({
+          ...state.pagination,
+          type: state.currentFeedbackType
+        })
+
+        state.feedbacks = data.results
+        state.pagination = data.pagination
+        state.isLoading = false
+      } catch (error) {
+        handleErrors(error)
+      }
+    }
 
     return {
       state
