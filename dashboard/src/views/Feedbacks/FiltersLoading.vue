@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import ContentLoader from '../../components/ContentLoader'
+import ContentLoader from '@/components/ContentLoader'
 
 export default {
   components: { ContentLoader }

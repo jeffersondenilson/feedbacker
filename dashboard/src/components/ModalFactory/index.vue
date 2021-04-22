@@ -29,7 +29,7 @@
 
 <script>
 import { reactive, onMounted, onBeforeUnmount, defineAsyncComponent } from 'vue'
-import useModal from '../../hooks/useModal'
+import useModal from '@/hooks/useModal'
 
 const ModalLogin = defineAsyncComponent(() => import('../ModalLogin'))
 const ModalCreateAccount = defineAsyncComponent(() => import('../ModalCreateAccount'))

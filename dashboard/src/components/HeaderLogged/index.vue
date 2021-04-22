@@ -39,8 +39,8 @@
 <script>
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import useStore from '../../hooks/useStore'
-import { cleanCurrentUser } from '../../store/user'
+import useStore from '@/hooks/useStore'
+import { cleanCurrentUser } from '@/store/user'
 
 export default {
   setup () {

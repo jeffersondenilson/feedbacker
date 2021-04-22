@@ -15,7 +15,7 @@
   <div class="flex justify-center w-full pb-20">
     <div class="w-4/5 max-w-6xl py-10 grid grid-cols-4 gap-2">
       <div>
-        <h1 class="text-3xl font-black text-brand-graydark">
+        <h1 class="text-3xl font-black text-gray-800">
           Listagem
         </h1>
         <suspense>
@@ -64,13 +64,13 @@ import FeedbackCard from '@/components/FeedbackCard'
 import FeedbackCardLoading from '@/components/FeedbackCard/Loading'
 import Filters from './Filters'
 import FiltersLoading from './FiltersLoading'
-import HeaderLogged from '../../components/HeaderLogged'
-import { services } from '@/services'
+import HeaderLogged from '@/components/HeaderLogged'
+import services from '@/services'
 
 export default {
   components: {
     FeedbackCard,
-    FeedbackCardLoading
+    FeedbackCardLoading,
     Filters,
     FiltersLoading,
     HeaderLogged

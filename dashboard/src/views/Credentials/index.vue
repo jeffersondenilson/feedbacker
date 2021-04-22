@@ -14,7 +14,7 @@
 
   <div class="flex justify-center w-full h-full">
     <div class="flex flex-col items-center w-4/5 max-w-6xl py-10">
-      <h1 class="text-3xl font-black text-brand-graydark">
+      <h1 class="text-3xl font-black text-gray-800">
         Instalação e configuração
       </h1>
       <p class="mt-10 text-lg text-gray-800 font-regular">
@@ -92,13 +92,13 @@
 <script>
 import { reactive, watch, computed } from 'vue'
 import { useToast } from 'vue-toastification'
-import ContentLoader from '../../components/ContentLoader'
-import HeaderLogged from '../../components/HeaderLogged'
-import Icon from '../../components/Icon'
-import services from '../../services'
-import { setApiKey } from '../../store/user'
-import useStore from '../../hooks/useStore'
-import { brand as brandColors } from '../../../palette'
+import ContentLoader from '@/components/ContentLoader'
+import HeaderLogged from '@/components/HeaderLogged'
+import Icon from '@/components/Icon'
+import services from '@/services'
+import { setApiKey } from '@/store/user'
+import useStore from '@/hooks/useStore'
+import { brand as brandColors } from '@/../palette'
 
 export default {
   components: { ContentLoader, HeaderLogged, Icon },

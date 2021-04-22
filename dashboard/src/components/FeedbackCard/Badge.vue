@@ -17,33 +17,11 @@ export default {
   },
   setup (props) {
     const label = computed(() => {
-      return LABELS[props.type.toLowerCase()] ?? LABELS['other']
-      /*
-      if (props.type === 'ISSUE') {
-        return 'problema'
-      }
-
-      if (props.type === 'IDEA') {
-        return 'ideia'
-      }
-
-      return 'outros'
-      */
+      return LABELS[props.type.toLowerCase()] ?? LABELS.other
     })
 
     const classColor = computed(() => {
-      return COLORS[props.type.toLowerCase()] ?? COLORS['other']
-      /*
-      if (props.type === 'ISSUE') {
-        return 'problema'
-      }
-
-      if (props.type === 'IDEA') {
-        return 'ideia'
-      }
-
-      return 'outros'
-      */
+      return COLORS[props.type.toLowerCase()] ?? COLORS.other
     })
 
     return {

@@ -17,7 +17,7 @@ export default (httpClient) => ({
   },
   getSummary: async () => {
     const response = await httpClient.get('/feedbacks/summary')
-    
+
     return {
       data: response.data
     }
