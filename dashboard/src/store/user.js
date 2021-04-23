@@ -11,7 +11,6 @@ export function cleanCurrentUser () {
 }
 
 export function setCurrentUser (user) {
-  user.apiKey = user.apiKey.pop()
   state.currentUser = user
 }
 

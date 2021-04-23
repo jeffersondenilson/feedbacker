@@ -51,10 +51,10 @@
           </span>
         </div>
       </div>
+    </div>
 
-      <div class="flex justify-end mt-8" v-if="!state.isOpen">
-        <icon name="chevron-down" size="24" :color="brandColors.graydark" />
-      </div>
+    <div class="flex justify-end mt-8" v-if="!state.isOpen">
+      <icon name="chevron-down" size="24" :color="brandColors.graydark" />
     </div>
   </div>
 </template>
@@ -63,7 +63,7 @@
 import { reactive } from 'vue'
 import Badge from './Badge'
 import { brand as brandColors } from '@/../palette'
-import { getDiffTimeBetweenCurrentDate } from '@/utils/date'
+import { getDiffTimeBetweenCurrentDate } from '@/utils/getDiffTimeBetweenCurrentDate'
 import Icon from '../Icon'
 import { wait } from '@/utils/timeout'
 
