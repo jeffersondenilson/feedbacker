@@ -12,26 +12,31 @@
     </p>
   </div>
 
-  <div class="flex justify-center w-full pb-20">
-    <div class="w-4/5 max-w-6xl py-10 grid grid-cols-4 gap-2">
-      <div>
+  <div id="list" class="flex justify-center w-full pb-20">
+    <div class="w-11/12 md:w-4/5 max-w-6xl py-10 grid grid-cols-4 gap-2">
+      <div class="md:pl-10 col-span-4 md:col-span-3 lg:col-span-1">
         <h1 class="text-3xl font-black text-gray-800">
           Listagem
         </h1>
         <suspense>
           <template #default>
+            <!-- TODO: animação? -->
             <filters
+              id="filters"
               @select="changeFeedbacksType"
+              :class="{
+                'lg:fixed lg:top-0 lg:w-1/6': state.isScrollingFeedbacks
+              }"
               class="mt-8 animate__animated animate__fadeIn animate__faster"
             />
           </template>
           <template #fallback>
-            <filters-loading class="mt-8" />
+            <filters-loading id="filters" class="mt-8" />
           </template>
         </suspense>
       </div>
 
-      <div class="px-10 pt-20 col-span-3">
+      <div class="md:px-10 pt-5 lg:pt-20 col-span-4 lg:col-span-3">
         <p
           v-if="state.hasError"
           class="text-lg text-center text-brand-danger font-regular"
@@ -59,6 +64,16 @@
       </div>
     </div>
   </div>
+  <!-- TODO: animação? lg:left? -->
+  <a
+    v-if="state.isScrollingFeedbacks"
+    href="#list"
+    class="fixed bottom-3 md:bottom-10 right-3 md:right-10 p-2 md:p-4
+      w-10 h-10 md:w-14 md:h-14 bg-brand-main rounded-full z-100"
+    title="Voltar ao topo"
+  >
+    <icon name="chevron-down" class="transform rotate-180" size="100%" />
+  </a>
 </template>
 
 <script>
@@ -68,7 +83,10 @@ import FeedbackCardLoading from '@/components/FeedbackCard/Loading'
 import Filters from './Filters'
 import FiltersLoading from './FiltersLoading'
 import HeaderLogged from '@/components/HeaderLogged'
+import Icon from '@/components/Icon'
 import services from '@/services'
+
+let filtersInitialPos = 0
 
 export default {
   components: {
@@ -76,7 +94,8 @@ export default {
     FeedbackCardLoading,
     Filters,
     FiltersLoading,
-    HeaderLogged
+    HeaderLogged,
+    Icon
   },
   setup () {
     const state = reactive({
@@ -90,7 +109,8 @@ export default {
         offset: 0,
         total: 0
       },
-      hasError: false
+      hasError: false,
+      isScrollingFeedbacks: false
     })
 
     onErrorCaptured(handleErrors)
@@ -98,6 +118,8 @@ export default {
     onMounted(() => {
       fetchFeedbacks()
       window.addEventListener('scroll', handleScroll)
+      // TODO: usar ref?
+      filtersInitialPos = document.getElementById('filters').offsetTop
     })
 
     onUnmounted(() => {
@@ -110,9 +132,12 @@ export default {
     }
 
     async function handleScroll () {
+      const scrollTop = document.documentElement.scrollTop
       const isBottomOfWindow = Math.ceil(
-        document.documentElement.scrollTop + window.innerHeight
+        scrollTop + window.innerHeight
       ) >= document.documentElement.scrollHeight
+
+      state.isScrollingFeedbacks = scrollTop >= filtersInitialPos
 
       if (state.isLoading || state.isLoadingMoreFeedbacks) return
       if (!isBottomOfWindow) return
@@ -180,3 +205,9 @@ export default {
   }
 }
 </script>
+
+<style>
+html {
+  scroll-behavior: smooth;
+}
+</style>

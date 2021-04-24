@@ -19,15 +19,15 @@
       :class="{
         animate__fadeOutUp: state.isClosing
       }"
-      class="flex mt-8 animate__animated animate__fadeInUp animate__faster"
+      class="flex flex-col lg:flex-row mt-8 animate__animated animate__fadeInUp animate__faster"
       v-if="state.isOpen"
     >
-      <div class="flex flex-col w-1/2">
+      <div class="flex flex-col w-full lg:w-1/2">
         <div class="flex flex-col">
           <span class="font-bold text-gray-400 uppercase select-none">
             Página
           </span>
-          <span class="font-medium text-gray-700">
+          <span class="break-words font-medium text-gray-700">
             {{ feedback.page }}
           </span>
         </div>
@@ -41,7 +41,7 @@
         </div>
       </div>
 
-      <div class="flex flex-col w-1/2">
+      <div class="flex flex-col w-full lg:w-1/2 lg:ml-5">
         <div class="flex flex-col">
           <span class="font-bold text-gray-400 uppercase select-none">
             Usuário

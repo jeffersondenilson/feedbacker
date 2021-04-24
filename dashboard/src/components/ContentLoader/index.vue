@@ -48,7 +48,7 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="postcss" scoped>
 @keyframes shimmer {
   100% {
     transform: translateX(100%);
