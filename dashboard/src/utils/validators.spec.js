@@ -3,7 +3,7 @@ import {
   validateEmptyAndEmail,
   validateEmptyAndName
 } from './validators'
-
+// TODO: AAA?
 describe('Validators utils', () => {
   it('should give an error with empty password', () => {
     expect(validateEmptyAndLength3()).toBe('*Este campo é obrigatório')
