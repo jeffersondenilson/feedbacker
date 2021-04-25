@@ -4,10 +4,6 @@ import useModal from './useModal'
 const EVENT_NAME = 'modal:toggle'
 
 describe('useModal hooks', () => {
-  afterEach(() => {
-    bus.off(EVENT_NAME)
-  })
-
   it('should listen to event', () => {
     const modal = useModal()
     const payload = { status: true, component: 'ModalCreateAccount' }
