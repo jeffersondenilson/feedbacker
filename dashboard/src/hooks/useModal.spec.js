@@ -16,11 +16,11 @@ describe('useModal hooks', () => {
     expect(spy).toBeCalledWith(payload)
   })
 
-  it('should unlisten to event', () => {
+  it('should stop listening to event', () => {
     const modal = useModal()
     const payload = { status: true, component: 'ModalCreateAccount' }
     const spy = jest.fn()
-    modal.listen(spy)
+    bus.on(EVENT_NAME, spy)
 
     modal.off(spy)
     bus.emit(EVENT_NAME, payload)
