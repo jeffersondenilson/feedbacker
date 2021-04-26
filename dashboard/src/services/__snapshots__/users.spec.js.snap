@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserService should return api key 1`] = `
+Object {
+  "data": Object {
+    "apiKey": "a1p2i3k4e5y",
+  },
+}
+`;
+
+exports[`UserService should return user info 1`] = `
+Object {
+  "data": Object {
+    "email": "user1@gmail.com",
+    "name": "user1",
+  },
+}
+`;
