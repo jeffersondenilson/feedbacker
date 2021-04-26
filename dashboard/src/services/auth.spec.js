@@ -17,6 +17,7 @@ describe('AuthService', () => {
     const response = await AuthService(mockAxios)
       .login({ email: 'me@me.com', password: '123' })
 
+    expect(response.errors).toBe(null)
     expect(response.data).toHaveProperty('token')
     expect(response).toMatchSnapshot()
   })
@@ -33,6 +34,7 @@ describe('AuthService', () => {
 
     const response = await AuthService(mockAxios).register(user)
 
+    expect(response.errors).toBe(null)
     expect(response.data).toHaveProperty('name')
     expect(response.data).toHaveProperty('password')
     expect(response.data).toHaveProperty('email')
