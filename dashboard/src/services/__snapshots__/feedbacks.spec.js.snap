@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FeedbacksService should return count of each type of feedback 1`] = `
+Object {
+  "all": Any<Number>,
+  "idea": Any<Number>,
+  "issue": Any<Number>,
+  "other": Any<Number>,
+}
+`;
