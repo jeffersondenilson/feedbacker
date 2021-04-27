@@ -1,10 +1,144 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FeedbacksService should return count of each type of feedback 1`] = `
+exports[`FeedbacksService should return count of feedback types 1`] = `
 Object {
-  "all": Any<Number>,
-  "idea": Any<Number>,
-  "issue": Any<Number>,
-  "other": Any<Number>,
+  "data": Object {
+    "all": Any<Number>,
+    "idea": Any<Number>,
+    "issue": Any<Number>,
+    "other": Any<Number>,
+  },
+}
+`;
+
+exports[`FeedbacksService should return feedbacks within default pagination 1`] = `
+Object {
+  "data": Object {
+    "pagination": Object {
+      "limit": 5,
+      "offset": 0,
+      "total": 7,
+    },
+    "results": Array [
+      Object {
+        "apiKey": "fcd5015c-10d3-4e9c-b395-ec7ed8850165",
+        "createdAt": 1605225600000,
+        "device": "Chrome 85.0, macOS 10.14",
+        "fingerprint": "490135491",
+        "id": "eab759f8-f238-4ff9-ae91-ee1558982329",
+        "page": "https://feedbacker.com/pricing",
+        "text": "Muito bom!",
+        "type": "OTHER",
+      },
+      Object {
+        "apiKey": "fcd5015c-10d3-4e9c-b395-ec7ed8850165",
+        "createdAt": 1603411200000,
+        "device": "Chrome 85.0, macOS 10.14",
+        "fingerprint": "490135491",
+        "id": "eab759f8-f238-4ff9-ae91-ee1558982329",
+        "page": "https://feedbacker.com/pricing",
+        "text": "Muitos erros slkkkkkkk",
+        "type": "ISSUE",
+      },
+      Object {
+        "apiKey": "fcd5015c-10d3-4e9c-b395-ec7ed8850165",
+        "createdAt": 1600819200000,
+        "device": "Chrome 85.0, macOS 10.14",
+        "fingerprint": "490135491",
+        "id": "eab759f8-f238-4ff9-ae91-ee1558982329",
+        "page": "https://feedbacker.com/pricing",
+        "text": "Podia ter um botão de solicitar demo",
+        "type": "IDEA",
+      },
+      Object {
+        "apiKey": "fcd5015c-10d3-4e9c-b395-ec7ed8850165",
+        "createdAt": 1608681600000,
+        "device": "Chrome 85.0, macOS 10.14",
+        "fingerprint": "490135491",
+        "id": "eab759f8-f238-4ff9-ae91-ee1558982329",
+        "page": "https://feedbacker.com/pricing",
+        "text": "Podia ter um botão de solicitar demo 1",
+        "type": "IDEA",
+      },
+      Object {
+        "apiKey": "fcd5015c-10d3-4e9c-b395-ec7ed8850165",
+        "createdAt": 1598140800000,
+        "device": "Chrome 85.0, macOS 10.14",
+        "fingerprint": "490135491",
+        "id": "eab759f8-f238-4ff9-ae91-ee1558982329",
+        "page": "https://feedbacker.com/pricing",
+        "text": "Podia ter um botão de solicitar demo 2",
+        "type": "IDEA",
+      },
+    ],
+  },
+}
+`;
+
+exports[`FeedbacksService should return feedbacks within offset = 3 limit = 2 1`] = `
+Object {
+  "data": Object {
+    "pagination": Object {
+      "limit": 2,
+      "offset": 2,
+      "total": 7,
+    },
+    "results": Array [
+      Object {
+        "apiKey": "fcd5015c-10d3-4e9c-b395-ec7ed8850165",
+        "createdAt": 1600819200000,
+        "device": "Chrome 85.0, macOS 10.14",
+        "fingerprint": "490135491",
+        "id": "eab759f8-f238-4ff9-ae91-ee1558982329",
+        "page": "https://feedbacker.com/pricing",
+        "text": "Podia ter um botão de solicitar demo",
+        "type": "IDEA",
+      },
+      Object {
+        "apiKey": "fcd5015c-10d3-4e9c-b395-ec7ed8850165",
+        "createdAt": 1608681600000,
+        "device": "Chrome 85.0, macOS 10.14",
+        "fingerprint": "490135491",
+        "id": "eab759f8-f238-4ff9-ae91-ee1558982329",
+        "page": "https://feedbacker.com/pricing",
+        "text": "Podia ter um botão de solicitar demo 1",
+        "type": "IDEA",
+      },
+    ],
+  },
+}
+`;
+
+exports[`FeedbacksService should return feedbacks within offset = 5 limit = 5 1`] = `
+Object {
+  "data": Object {
+    "pagination": Object {
+      "limit": 5,
+      "offset": 5,
+      "total": 7,
+    },
+    "results": Array [
+      Object {
+        "apiKey": "fcd5015c-10d3-4e9c-b395-ec7ed8850165",
+        "createdAt": 1590192000000,
+        "device": "Chrome 85.0, macOS 10.14",
+        "fingerprint": "490135491",
+        "id": "eab759f8-f238-4ff9-ae91-ee1558982329",
+        "page": "https://feedbacker.com/pricing",
+        "text": "Muitos erros slkkkkkkk 2",
+        "type": "ISSUE",
+      },
+      Object {
+        "apiKey": "fcd5015c-10d3-4e9c-b395-ec7ed8850165",
+        "createdAt": 1590192000000,
+        "device": "Chrome 85.0, macOS 10.14",
+        "fingerprint": "490135491",
+        "id": "eab759f8-f238-4ff9-ae91-ee1558982329",
+        "page": "https://feedbacker.com/pricing",
+        "text": "Tava bom, agora parece que piorou",
+        "type": "ISSUE",
+      },
+    ],
+  },
 }
 `;

@@ -1,5 +1,6 @@
 import mockAxios from 'axios'
 import FeedbacksService from './feedbacks'
+import feedbacks from './__mocks__/feedbacks'
 
 jest.mock('axios')
 
@@ -8,23 +9,94 @@ describe('FeedbacksService', () => {
     jest.clearAllMocks()
   })
 
-  it('should return all feedbacks', async () => {
-    //
+  it('should return feedbacks within default pagination', async () => {
+    const expectedPagination = {
+      limit: 5,
+      offset: 0,
+      total: feedbacks.length
+    }
+    mockAxios.get.mockImplementationOnce((url, config) => {
+      const { limit, offset } = config.params
+      return Promise.resolve({ data:
+        {
+          results: feedbacks.slice(offset, limit),
+          pagination: { limit, offset, total: feedbacks.length }
+        }
+      })
+    })
+
+    const response = await FeedbacksService(mockAxios).getAll()
+
+    expect(response.data).toHaveProperty('results')
+    expect(response.data).toHaveProperty('pagination')
+    expect(response.data.pagination).toStrictEqual(expectedPagination)
+    expect(response).toMatchSnapshot()
   })
 
-  it('should return all feedbacks with default pagination', async () => {
-    //
+  it('should return feedbacks within offset = 5 limit = 5', async () => {
+    const expectedPagination = {
+      limit: 5,
+      offset: 5,
+      total: feedbacks.length
+    }
+    mockAxios.get.mockImplementationOnce((url, config) => {
+      const { limit, offset } = config.params
+      return Promise.resolve({ data:
+        {
+          results: feedbacks
+            .slice(offset, feedbacks.length)
+            .slice(0, limit),
+          pagination: { limit, offset, total: feedbacks.length }
+        }
+      })
+    })
+
+    const response = await FeedbacksService(mockAxios).getAll({
+      limit: 5,
+      offset: 5
+    })
+
+    expect(response.data).toHaveProperty('results')
+    expect(response.data).toHaveProperty('pagination')
+    expect(response.data.pagination).toStrictEqual(expectedPagination)
+    expect(response).toMatchSnapshot()
   })
 
-  it('should return all feedbacks with offset = 5 and limit = 5', async () => {
-    //
+  it.only('should return feedbacks within offset = 3 limit = 2', async () => {
+    const expectedPagination = {
+      limit: 2,
+      offset: 2,
+      total: feedbacks.length
+    }
+    mockAxios.get.mockImplementationOnce((url, config) => {
+      let { limit, offset } = config.params
+
+      if (offset > limit) {
+        offset = limit
+      } 
+      
+      return Promise.resolve({ data:
+        {
+          results: feedbacks
+            .slice(offset, feedbacks.length)
+            .slice(0, limit),
+          pagination: { limit, offset, total: feedbacks.length }
+        }
+      })
+    })
+
+    const response = await FeedbacksService(mockAxios).getAll({
+      limit: 2,
+      offset: 3
+    })
+
+    expect(response.data).toHaveProperty('results')
+    expect(response.data).toHaveProperty('pagination')
+    expect(response.data.pagination).toStrictEqual(expectedPagination)
+    expect(response).toMatchSnapshot()
   })
 
-  it('should return all feedbacks with offset = 3 and limit = 2', async () => {
-    //
-  })
-
-  it('should return all feedbacks with offset = 2 and limit = 5', async () => {
+  it('should return feedbacks within offset = 2 limit = 5', async () => {
     //
   })
 
@@ -40,7 +112,7 @@ describe('FeedbacksService', () => {
     //
   })
 
-  it.only('should return count of each type of feedback', async () => {
+  it('should return count of feedback types', async () => {
     const summary = { all: 7, issue: 3, idea: 3, other: 1 }
     mockAxios.get.mockImplementationOnce(() => {
       return Promise.resolve({ data: summary })
@@ -48,11 +120,13 @@ describe('FeedbacksService', () => {
 
     const response = await FeedbacksService(mockAxios).getSummary()
 
-    expect(response.data).toMatchSnapshot({
-      all: expect.any(Number),
-      issue: expect.any(Number),
-      idea: expect.any(Number),
-      other: expect.any(Number)
+    expect(response).toMatchSnapshot({
+      data: {
+        all: expect.any(Number),
+        issue: expect.any(Number),
+        idea: expect.any(Number),
+        other: expect.any(Number)
+      }
     })
   })
 })
