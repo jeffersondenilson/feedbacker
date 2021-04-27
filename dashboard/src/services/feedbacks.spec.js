@@ -17,8 +17,8 @@ describe('FeedbacksService', () => {
     }
     mockAxios.get.mockImplementationOnce((url, config) => {
       const { limit, offset } = config.params
-      return Promise.resolve({ data:
-        {
+      return Promise.resolve({
+        data: {
           results: feedbacks.slice(offset, limit),
           pagination: { limit, offset, total: feedbacks.length }
         }
@@ -26,6 +26,35 @@ describe('FeedbacksService', () => {
     })
 
     const response = await FeedbacksService(mockAxios).getAll()
+
+    expect(response.data).toHaveProperty('results')
+    expect(response.data).toHaveProperty('pagination')
+    expect(response.data.pagination).toStrictEqual(expectedPagination)
+    expect(response).toMatchSnapshot()
+  })
+
+  it('should return feedbacks within offset = 2 limit = 5', async () => {
+    const expectedPagination = {
+      limit: 5,
+      offset: 2,
+      total: feedbacks.length
+    }
+    mockAxios.get.mockImplementationOnce((url, config) => {
+      const { limit, offset } = config.params
+      return Promise.resolve({
+        data: {
+          results: feedbacks
+            .slice(offset, feedbacks.length)
+            .slice(0, limit),
+          pagination: { limit, offset, total: feedbacks.length }
+        }
+      })
+    })
+
+    const response = await FeedbacksService(mockAxios).getAll({
+      limit: 5,
+      offset: 2
+    })
 
     expect(response.data).toHaveProperty('results')
     expect(response.data).toHaveProperty('pagination')
@@ -41,8 +70,8 @@ describe('FeedbacksService', () => {
     }
     mockAxios.get.mockImplementationOnce((url, config) => {
       const { limit, offset } = config.params
-      return Promise.resolve({ data:
-        {
+      return Promise.resolve({
+        data: {
           results: feedbacks
             .slice(offset, feedbacks.length)
             .slice(0, limit),
@@ -62,7 +91,7 @@ describe('FeedbacksService', () => {
     expect(response).toMatchSnapshot()
   })
 
-  it.only('should return feedbacks within offset = 3 limit = 2', async () => {
+  it('should return feedbacks within offset = 3 limit = 2', async () => {
     const expectedPagination = {
       limit: 2,
       offset: 2,
@@ -75,8 +104,8 @@ describe('FeedbacksService', () => {
         offset = limit
       } 
       
-      return Promise.resolve({ data:
-        {
+      return Promise.resolve({
+        data: {
           results: feedbacks
             .slice(offset, feedbacks.length)
             .slice(0, limit),
@@ -96,20 +125,95 @@ describe('FeedbacksService', () => {
     expect(response).toMatchSnapshot()
   })
 
-  it('should return feedbacks within offset = 2 limit = 5', async () => {
-    //
+  it('should return feedbacks within offset = 0 limit = 11', async () => {
+    const expectedPagination = {
+      limit: 5,
+      offset: 0,
+      total: feedbacks.length
+    }
+    mockAxios.get.mockImplementationOnce((url, config) => {
+      let { limit, offset } = config.params
+
+      if (limit > 10) {
+        limit = 5
+      }
+      
+      return Promise.resolve({
+        data: {
+          results: feedbacks
+            .slice(offset, feedbacks.length)
+            .slice(0, limit),
+          pagination: { limit, offset, total: feedbacks.length }
+        }
+      })
+    })
+
+    const response = await FeedbacksService(mockAxios).getAll({
+      limit: 11,
+      offset: 0
+    })
+
+    expect(response.data).toHaveProperty('results')
+    expect(response.data).toHaveProperty('pagination')
+    expect(response.data.pagination).toStrictEqual(expectedPagination)
+    expect(response).toMatchSnapshot()
   })
 
   it('should return all feedbacks of type ISSUE', async () => {
-    //
+    mockAxios.get.mockImplementationOnce((url, config) => {
+      const { type } = config.params
+      return Promise.resolve({
+        data: {
+          results: feedbacks.filter(fb => fb.type === type.toUpperCase()),
+          pagination: { limit: 5, offset: 0, total: feedbacks.length }
+        }
+      })
+    })
+
+    const response = await FeedbacksService(mockAxios).getAll({
+      type: 'issue'
+    })
+
+    expect(response.data).toHaveProperty('results')
+    expect(response).toMatchSnapshot()
   })
 
   it('should return all feedbacks of type IDEA', async () => {
-    //
+    mockAxios.get.mockImplementationOnce((url, config) => {
+      const { type } = config.params
+      return Promise.resolve({
+        data: {
+          results: feedbacks.filter(fb => fb.type === type.toUpperCase()),
+          pagination: { limit: 5, offset: 0, total: feedbacks.length }
+        }
+      })
+    })
+
+    const response = await FeedbacksService(mockAxios).getAll({
+      type: 'idea'
+    })
+
+    expect(response.data).toHaveProperty('results')
+    expect(response).toMatchSnapshot()
   })
 
   it('should return all feedbacks of type OTHER', async () => {
-    //
+    mockAxios.get.mockImplementationOnce((url, config) => {
+      const { type } = config.params
+      return Promise.resolve({
+        data: {
+          results: feedbacks.filter(fb => fb.type === type.toUpperCase()),
+          pagination: { limit: 5, offset: 0, total: feedbacks.length }
+        }
+      })
+    })
+
+    const response = await FeedbacksService(mockAxios).getAll({
+      type: 'other'
+    })
+
+    expect(response.data).toHaveProperty('results')
+    expect(response).toMatchSnapshot()
   })
 
   it('should return count of feedback types', async () => {
