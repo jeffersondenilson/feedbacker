@@ -28,6 +28,7 @@
           @click="handleLogout()"
           class="mt-2 px-6 py-2 text-sm md:text-base font-bold bg-white text-brand-main
           rounded-full cursor-pointer focus:outline-none"
+          data-test="logout-button"
         >
           {{ logoutLabel }}
         </li>
