@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CustomHeader /> should render custom-header correctly 1`] = `
+<header class="header">
+  <div class="header-group">
+    <div class="flex items-center justify-between py-10">
+      <div class="w-28 lg:w-36"><img class="w-full" src="" alt="Logo"></div>
+      <div class="flex text-sm sm:text-base"><button class="px-3 sm:px-6 py-2 font-bold rounded-full text-white focus:outline-none" data-test="create-account-button-top"> Crie uma conta </button><button class="px-4 sm:px-6 py-2 font-bold bg-white rounded-full text-brand-main focus:outline-none" data-test="login-button"> Entrar </button></div>
+    </div>
+    <div class="flex flex-col md:mt-28">
+      <h1 class="text-4xl font-black text-white"> Tenha um feedback. <br> E faça seus clientes mais <br class="hidden lg:inline-block"> felizes! </h1>
+      <p class="text-lg font-medium text-white"> Receba ideias, reclamações e feedbacks com um <br class="hidden lg:inline-block"> simples widget na página. </p>
+      <div><button class="my-8 px-6 py-2 font-bold bg-white rounded-full text-brand-main focus:outline-none" data-test="create-account-button-middle"> Crie uma conta grátis </button></div>
+    </div>
+  </div>
+</header>
+`;

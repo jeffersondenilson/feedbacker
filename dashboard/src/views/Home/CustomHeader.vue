@@ -11,12 +11,14 @@
           <button
             @click="() => emit('create-account')"
             class="px-3 sm:px-6 py-2 font-bold rounded-full text-white focus:outline-none"
+            data-test="create-account-button-top"
           >
             Crie uma conta
           </button>
           <button
             @click="() => emit('login')"
             class="px-4 sm:px-6 py-2 font-bold bg-white rounded-full text-brand-main focus:outline-none"
+            data-test="login-button"
           >
             Entrar
           </button>
@@ -37,6 +39,7 @@
           <button
             @click="() => emit('create-account')"
             class="my-8 px-6 py-2 font-bold bg-white rounded-full text-brand-main focus:outline-none"
+            data-test="create-account-button-middle"
           >
             Crie uma conta grátis
           </button>
