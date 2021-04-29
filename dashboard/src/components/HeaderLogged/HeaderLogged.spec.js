@@ -10,6 +10,7 @@ const router = createRouter({
 
 const mockStore = { currentUser: {} }
 jest.mock('@/hooks/useStore', () => {
+  // executa quando o arquivo é importado
   return () => {
     return mockStore
   }
@@ -50,7 +51,7 @@ describe('<HeaderLogged />', () => {
         plugins: [router]
       }
     })
-    
+
     const logoutButton = wrapper.find('[data-test=logout-button]')
     expect(logoutButton.text()).toBe('User Name (sair)')
   })
