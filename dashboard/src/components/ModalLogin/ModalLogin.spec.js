@@ -4,11 +4,33 @@ import Toast, { POSITION } from 'vue-toastification'
 import { shallowMount } from '@vue/test-utils'
 import ModalLogin from '.'
 import { useField } from 'vee-validate'
+import bus from '@/utils/bus'
+import useModal from '@/hooks/useModal'
+
 jest.mock('vee-validate', () => {
   return {
     useField: jest.fn(() => {
       return { value: '', errorMessage: '' }
     })
+  }
+})
+
+const EVENT_NAME = 'modal:toggle'
+const mockUseModal = {
+  listen (fn) {
+    bus.on(EVENT_NAME, fn)
+  },
+  close (payload = {}) {
+    bus.emit(EVENT_NAME, { ...payload, status: false })
+  }
+}
+jest.mock('@/hooks/useModal', () => {
+  // executa quando o arquivo é importado
+  return () => {
+    return {
+      listen: mockUseModal.listen,
+      close: mockUseModal.close
+    }
   }
 })
 
@@ -188,5 +210,27 @@ describe('<ModalLogin />', () => {
     const loadingIcon = wrapper.find('[data-test=submit-loading-icon]')
     expect(loadingIcon.exists()).toBe(true)
     expect(submitButton.html()).toMatchSnapshot()
+  })
+
+  it('should emit modal close when click close button', async () => {
+    router.push('/')
+    await router.isReady()
+    const wrapper = shallowMount(ModalLogin, {
+      global: {
+        plugins: [
+          router,
+          [Toast, { position: POSITION.BOTTOM_RIGHT }]
+        ]
+      }
+    })
+    const spy = jest.fn()
+    const modal = useModal()
+    modal.listen(spy)
+
+    const closeButton = wrapper.find('[data-test=close-button]')
+    closeButton.trigger('click')
+
+    expect(wrapper.emitted()).toHaveProperty('click')
+    expect(spy).toHaveBeenCalledTimes(1)
   })
 })
