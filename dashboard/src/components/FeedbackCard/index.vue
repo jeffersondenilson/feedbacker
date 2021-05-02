@@ -2,6 +2,7 @@
   <div
     @click="handleToggle"
     class="flex flex-col px-8 py-6 rounded cursor-pointer bg-brand-gray"
+    data-test="toggle-card"
   >
     <div class="flex items-center justify-between w-full mb-8">
       <badge :type="feedback.type" />
@@ -21,6 +22,7 @@
       }"
       class="flex flex-col lg:flex-row mt-8 animate__animated animate__fadeInUp animate__faster"
       v-if="state.isOpen"
+      data-test="details"
     >
       <div class="flex flex-col w-full lg:w-1/2">
         <div class="flex flex-col">
@@ -53,7 +55,11 @@
       </div>
     </div>
 
-    <div class="flex justify-end mt-8" v-if="!state.isOpen">
+    <div
+      class="flex justify-end mt-8"
+      v-if="!state.isOpen"
+      data-test="closed-icon"
+    >
       <icon name="chevron-down" size="24" :color="brandColors.graydark" />
     </div>
   </div>
@@ -81,7 +87,7 @@ export default {
 
     async function handleToggle () {
       state.isClosing = true
-
+      
       await wait(250)
       state.isOpen = !state.isOpen
       state.isClosing = false

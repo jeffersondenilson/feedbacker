@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FeedbackCard /> should open card when clicked 1`] = `
+<div class="flex flex-col px-8 py-6 rounded cursor-pointer bg-brand-gray" data-test="toggle-card">
+  <div class="flex items-center justify-between w-full mb-8">
+    <badge-stub type="OTHER"></badge-stub><span class="font-regular text-brand-graydark">171 dias atrás</span>
+  </div>
+  <div class="text-lg font-medium text-gray-800">Muito bom!</div>
+  <div class="flex flex-col lg:flex-row mt-8 animate__animated animate__fadeInUp animate__faster" data-test="details">
+    <div class="flex flex-col w-full lg:w-1/2">
+      <div class="flex flex-col"><span class="font-bold text-gray-400 uppercase select-none"> Página </span><span class="break-words font-medium text-gray-700">https://feedbacker.com/pricing</span></div>
+      <div class="flex flex-col"><span class="font-bold text-gray-400 uppercase select-none"> Dispositivo </span><span class="font-medium text-gray-700">Chrome 85.0, macOS 10.14</span></div>
+    </div>
+    <div class="flex flex-col w-full lg:w-1/2 lg:ml-5">
+      <div class="flex flex-col"><span class="font-bold text-gray-400 uppercase select-none"> Usuário </span><span class="font-medium text-gray-700">490135491</span></div>
+    </div>
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`<FeedbackCard /> should render closed card 1`] = `
+<div class="flex flex-col px-8 py-6 rounded cursor-pointer bg-brand-gray" data-test="toggle-card">
+  <div class="flex items-center justify-between w-full mb-8">
+    <badge-stub type="OTHER"></badge-stub><span class="font-regular text-brand-graydark">171 dias atrás</span>
+  </div>
+  <div class="text-lg font-medium text-gray-800">Muito bom!</div>
+  <!--v-if-->
+  <div class="flex justify-end mt-8" data-test="closed-icon">
+    <icon-stub name="chevron-down" size="24" color="#C0BCB0"></icon-stub>
+  </div>
+</div>
+`;
+
+exports[`<FeedbackCard /> should render open card 1`] = `
+<div class="flex flex-col px-8 py-6 rounded cursor-pointer bg-brand-gray" data-test="toggle-card">
+  <div class="flex items-center justify-between w-full mb-8">
+    <badge-stub type="OTHER"></badge-stub><span class="font-regular text-brand-graydark">171 dias atrás</span>
+  </div>
+  <div class="text-lg font-medium text-gray-800">Muito bom!</div>
+  <div class="flex flex-col lg:flex-row mt-8 animate__animated animate__fadeInUp animate__faster" data-test="details">
+    <div class="flex flex-col w-full lg:w-1/2">
+      <div class="flex flex-col"><span class="font-bold text-gray-400 uppercase select-none"> Página </span><span class="break-words font-medium text-gray-700">https://feedbacker.com/pricing</span></div>
+      <div class="flex flex-col"><span class="font-bold text-gray-400 uppercase select-none"> Dispositivo </span><span class="font-medium text-gray-700">Chrome 85.0, macOS 10.14</span></div>
+    </div>
+    <div class="flex flex-col w-full lg:w-1/2 lg:ml-5">
+      <div class="flex flex-col"><span class="font-bold text-gray-400 uppercase select-none"> Usuário </span><span class="font-medium text-gray-700">490135491</span></div>
+    </div>
+  </div>
+  <!--v-if-->
+</div>
+`;
