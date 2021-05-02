@@ -2,6 +2,7 @@
   <span
     :class="`bg-${classColor}`"
     class="p-2 text-xs font-black text-white uppercase rounded-full"
+    data-test="badge"
   >
     {{ label }}
   </span>
