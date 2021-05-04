@@ -13,17 +13,20 @@
         }"
         class="flex items-center justify-between px-4 py-1 rounded cursor-pointer"
         @click="() => handleSelect(filter)"
+        data-test="filter"
+        :data-test-filter-type="filter.type"
       >
         <div class="flex items-center">
           <span
             :class="`bg-${filter.color}`"
-            class="inline-color w-2 h-2 mr-2 rounded-full"
+            class="inline-block w-2 h-2 mr-2 rounded-full"
           />
           {{ filter.label }}
         </div>
         <span
           :class="filter.active ? `text-${filter.color}` : 'text-brand-gray'"
           class="font-bold"
+          data-test="filter-amount"
         >
           {{ filter.amount }}
         </span>
@@ -33,7 +36,7 @@
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { reactive, onMounted } from 'vue'
 import services from '@/services'
 import useStore from '@/hooks/useStore'
 import { LABELS, COLORS } from '@/utils/constants'
@@ -86,7 +89,7 @@ export default {
 
         return { ...filter, active: false }
       })
-
+      
       emit('select', type)
     }
 

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Filters /> should render filters correctly 1`] = `
+<div>
+  <div class="flex flex-col">
+    <h1 class="text-2xl font-regular text-gray-800"> Filtros </h1>
+    <ul class="flex flex-col mt-3 list-none">
+      <li class="bg-gray-200 bg-opacity-50 flex items-center justify-between px-4 py-1 rounded cursor-pointer" data-test="filter">
+        <div class="flex items-center"><span class="bg-brand-info inline-block w-2 h-2 mr-2 rounded-full"></span> Todos</div><span class="text-brand-info font-bold" data-test="filter-amount">7</span>
+      </li>
+      <li class="flex items-center justify-between px-4 py-1 rounded cursor-pointer" data-test="filter" data-test-filter-type="issue">
+        <div class="flex items-center"><span class="bg-brand-danger inline-block w-2 h-2 mr-2 rounded-full"></span> Problemas</div><span class="text-brand-gray font-bold" data-test="filter-amount">3</span>
+      </li>
+      <li class="flex items-center justify-between px-4 py-1 rounded cursor-pointer" data-test="filter" data-test-filter-type="idea">
+        <div class="flex items-center"><span class="bg-brand-warning inline-block w-2 h-2 mr-2 rounded-full"></span> Ideias</div><span class="text-brand-gray font-bold" data-test="filter-amount">3</span>
+      </li>
+      <li class="flex items-center justify-between px-4 py-1 rounded cursor-pointer" data-test="filter" data-test-filter-type="other">
+        <div class="flex items-center"><span class="bg-brand-graydark inline-block w-2 h-2 mr-2 rounded-full"></span> Outros</div><span class="text-brand-gray font-bold" data-test="filter-amount">1</span>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
