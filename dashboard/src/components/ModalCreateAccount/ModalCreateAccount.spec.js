@@ -85,7 +85,7 @@ describe('<ModalCreateAccount />', () => {
     const name = ''
     const errorMessage = '*Este campo é obrigatório'
     useField.mockImplementation((field, validator) => {
-      if(field === 'name') {
+      if (field === 'name') {
         return { value: name, errorMessage }
       }
       return { value: '', errorMessage: '' }
@@ -138,7 +138,7 @@ describe('<ModalCreateAccount />', () => {
     const email = 'invalid.email'
     const errorMessage = '*Este campo precisa ser um e-mail válido'
     useField.mockImplementation((field, validator) => {
-      if(field === 'email') {
+      if (field === 'email') {
         return { value: email, errorMessage }
       }
       return { value: '', errorMessage: '' }
@@ -191,7 +191,7 @@ describe('<ModalCreateAccount />', () => {
     const password = '12'
     const errorMessage = '*No mínimo 3 caracteres'
     useField.mockImplementation((field, validator) => {
-      if(field === 'password') {
+      if (field === 'password') {
         return { value: password, errorMessage }
       }
       return { value: '', errorMessage: '' }
@@ -233,7 +233,7 @@ describe('<ModalCreateAccount />', () => {
         }
       }
     })
-    
+
     const submitButton = wrapper.find('[data-test=create-account-submit-button]')
     await submitButton.trigger('submit')
 
@@ -252,7 +252,7 @@ describe('<ModalCreateAccount />', () => {
         ]
       }
     })
-    
+
     const submitButton = wrapper.find('[data-test=create-account-submit-button]')
     expect(submitButton.text()).toBe('Entrar')
     await submitButton.trigger('submit')

@@ -1,7 +1,9 @@
-import { shallowMount, flushPromises } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import FeedbackCard from '.'
-import { nextTick } from 'vue'
 import { wait } from '@/utils/timeout'
+
+// TODO: fazer mock de diff time, se não vai falhar todo dia
+// ou mudar createdAt do feedback
 
 const feedback = {
   text: 'Muito bom!',
@@ -31,7 +33,7 @@ describe('<FeedbackCard />', () => {
 
     const details = wrapper.find('[data-test=details]')
     const closedIcon = wrapper.find('[data-test=closed-icon]')
-    
+
     expect(details.exists()).toBe(false)
     expect(closedIcon.exists()).toBe(true)
     expect(wrapper.html()).toMatchSnapshot()
@@ -42,7 +44,7 @@ describe('<FeedbackCard />', () => {
 
     const details = wrapper.find('[data-test=details]')
     const closedIcon = wrapper.find('[data-test=closed-icon]')
-    
+
     expect(details.exists()).toBe(true)
     expect(closedIcon.exists()).toBe(false)
     expect(wrapper.html()).toMatchSnapshot()

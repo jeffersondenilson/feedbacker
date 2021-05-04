@@ -25,7 +25,7 @@ describe('<HeaderLogged />', () => {
         plugins: [router]
       }
     })
-    
+
     expect(wrapper.html()).toMatchSnapshot()
   })
 
@@ -37,7 +37,7 @@ describe('<HeaderLogged />', () => {
         plugins: [router]
       }
     })
-    
+
     const logoutButton = wrapper.find('[data-test=logout-button]')
     expect(logoutButton.text()).toBe('...')
   })

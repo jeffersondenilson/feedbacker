@@ -87,7 +87,7 @@ export default {
 
     async function handleToggle () {
       state.isClosing = true
-      
+
       await wait(250)
       state.isOpen = !state.isOpen
       state.isClosing = false

@@ -38,7 +38,7 @@ describe('<Home />', () => {
         plugins: [router]
       }
     })
-    
+
     expect(wrapper.html()).toMatchSnapshot()
   })
 

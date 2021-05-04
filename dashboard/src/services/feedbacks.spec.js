@@ -102,8 +102,8 @@ describe('FeedbacksService', () => {
 
       if (offset > limit) {
         offset = limit
-      } 
-      
+      }
+
       return Promise.resolve({
         data: {
           results: feedbacks
@@ -137,7 +137,7 @@ describe('FeedbacksService', () => {
       if (limit > 10) {
         limit = 5
       }
-      
+
       return Promise.resolve({
         data: {
           results: feedbacks

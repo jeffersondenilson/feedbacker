@@ -85,7 +85,7 @@ describe('<ModalLogin />', () => {
     const email = 'invalid.email'
     const errorMessage = '*Este campo precisa ser um e-mail válido'
     useField.mockImplementation((field, validator) => {
-      if(field === 'email') {
+      if (field === 'email') {
         return { value: email, errorMessage }
       }
       return { value: '', errorMessage: '' }
@@ -138,7 +138,7 @@ describe('<ModalLogin />', () => {
     const password = '12'
     const errorMessage = '*No mínimo 3 caracteres'
     useField.mockImplementation((field, validator) => {
-      if(field === 'password') {
+      if (field === 'password') {
         return { value: password, errorMessage }
       }
       return { value: '', errorMessage: '' }
@@ -180,7 +180,7 @@ describe('<ModalLogin />', () => {
         }
       }
     })
-    
+
     const submitButton = wrapper.find('[data-test=login-submit-button]')
     await submitButton.trigger('submit')
 
@@ -199,7 +199,7 @@ describe('<ModalLogin />', () => {
         ]
       }
     })
-    
+
     const submitButton = wrapper.find('[data-test=login-submit-button]')
     expect(submitButton.text()).toBe('Entrar')
     await submitButton.trigger('submit')
