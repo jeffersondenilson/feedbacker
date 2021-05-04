@@ -1,9 +1,7 @@
 import { shallowMount } from '@vue/test-utils'
 import FeedbackCard from '.'
 import { wait } from '@/utils/timeout'
-
-// TODO: fazer mock de diff time, se não vai falhar todo dia
-// ou mudar createdAt do feedback
+import { getDiffTimeBetweenCurrentDate } from '@/utils/getDiffTimeBetweenCurrentDate'
 
 const feedback = {
   text: 'Muito bom!',
@@ -17,6 +15,8 @@ const feedback = {
 }
 
 jest.mock('@/utils/timeout')
+jest.mock('@/utils/getDiffTimeBetweenCurrentDate')
+getDiffTimeBetweenCurrentDate.mockReturnValue('3 dias átras')
 
 const wrapperFactory = (props) => {
   return shallowMount(FeedbackCard, {

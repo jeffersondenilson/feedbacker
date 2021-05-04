@@ -3,7 +3,7 @@
 exports[`<FeedbackCard /> should open card when clicked 1`] = `
 <div class="flex flex-col px-8 py-6 rounded cursor-pointer bg-brand-gray" data-test="toggle-card">
   <div class="flex items-center justify-between w-full mb-8">
-    <badge-stub type="OTHER"></badge-stub><span class="font-regular text-brand-graydark">171 dias atrás</span>
+    <badge-stub type="OTHER"></badge-stub><span class="font-regular text-brand-graydark">3 dias átras</span>
   </div>
   <div class="text-lg font-medium text-gray-800">Muito bom!</div>
   <div class="flex flex-col lg:flex-row mt-8 animate__animated animate__fadeInUp animate__faster" data-test="details">
@@ -22,7 +22,7 @@ exports[`<FeedbackCard /> should open card when clicked 1`] = `
 exports[`<FeedbackCard /> should render closed card 1`] = `
 <div class="flex flex-col px-8 py-6 rounded cursor-pointer bg-brand-gray" data-test="toggle-card">
   <div class="flex items-center justify-between w-full mb-8">
-    <badge-stub type="OTHER"></badge-stub><span class="font-regular text-brand-graydark">171 dias atrás</span>
+    <badge-stub type="OTHER"></badge-stub><span class="font-regular text-brand-graydark">3 dias átras</span>
   </div>
   <div class="text-lg font-medium text-gray-800">Muito bom!</div>
   <!--v-if-->
@@ -35,7 +35,7 @@ exports[`<FeedbackCard /> should render closed card 1`] = `
 exports[`<FeedbackCard /> should render open card 1`] = `
 <div class="flex flex-col px-8 py-6 rounded cursor-pointer bg-brand-gray" data-test="toggle-card">
   <div class="flex items-center justify-between w-full mb-8">
-    <badge-stub type="OTHER"></badge-stub><span class="font-regular text-brand-graydark">171 dias atrás</span>
+    <badge-stub type="OTHER"></badge-stub><span class="font-regular text-brand-graydark">3 dias átras</span>
   </div>
   <div class="text-lg font-medium text-gray-800">Muito bom!</div>
   <div class="flex flex-col lg:flex-row mt-8 animate__animated animate__fadeInUp animate__faster" data-test="details">
