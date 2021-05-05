@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { reactive, onMounted } from 'vue'
+import { reactive } from 'vue'
 import services from '@/services'
 import useStore from '@/hooks/useStore'
 import { LABELS, COLORS } from '@/utils/constants'
@@ -89,7 +89,6 @@ export default {
 
         return { ...filter, active: false }
       })
-      
       emit('select', type)
     }
 
