@@ -24,7 +24,7 @@ export function validateEmptyAndEmail (value) {
 }
 
 export function validateEmptyAndName (value) {
-  if (!value) {
+  if (!value.trim()) {
     return '*Este campo é obrigatório'
   }
 
