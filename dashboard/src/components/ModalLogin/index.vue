@@ -54,9 +54,9 @@
       </label>
 
       <button
-        :disabled="state.isLoading"
+        :disabled="disableSubmit"
         type="submit"
-        :class="{ 'opacity-50': state.isLoading }"
+        :class="{ 'opacity-50': disableSubmit }"
         class="px-8 py-3 mt-10 text-2xl font-bold text-white rounded-full bg-brand-main focus:outline-none transition-all duration-150"
         data-test="login-submit-button"
       >
@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { reactive, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useField } from 'vee-validate'
 import { useToast } from 'vue-toastification'
@@ -115,6 +115,13 @@ export default {
       }
     })
 
+    const disableSubmit = computed(() => {
+      const hasFormErrors = !state.email.value || state.email.errorMessage ||
+        !state.password.value || state.password.errorMessage
+
+      return state.isLoading || !!hasFormErrors
+    })
+
     async function handleSubmit () {
       try {
         toast.clear()
@@ -146,6 +153,7 @@ export default {
     return {
       state,
       handleSubmit,
+      disableSubmit,
       close: modal.close
     }
   }

@@ -29,7 +29,7 @@ Cypress.Commands.add('login', (email, password) => {
   cy.get('[data-test=login-form]')
   cy.get('[data-test=email-input]').type(email)
   cy.get('[data-test=password-input]').type(password)
-  cy.get('[data-test=login-submit-button]').click()
+  cy.get('[data-test=login-submit-button]').click({ force: true })
 })
 
 Cypress.Commands.add('register', (name, email, password) => {
@@ -38,5 +38,5 @@ Cypress.Commands.add('register', (name, email, password) => {
   cy.get('[data-test=name-input]').type(name)
   cy.get('[data-test=email-input]').type(email)
   cy.get('[data-test=password-input]').type(password)
-  cy.get('[data-test=create-account-submit-button]').click()
+  cy.get('[data-test=create-account-submit-button]').click({ force: true })
 })
