@@ -35,22 +35,12 @@ describe('Home Modal', () => {
     cy.get('[data-test=login-form]')
   })
 
-  it.only('should close ModalLogin when clicks close button', () => {
+  it('should close ModalLogin when clicks close button', () => {
     cy.visit(APP_URL)
     cy.get('[data-test=login-button]').click()
     cy.get('[data-test=login-form]')
 
     cy.get('[data-test=close-button]').click()
-
-    cy.get('[data-test=login-form]').should('not.exist')
-  })
-
-  it.only('should close modal when clicks overlay', () => {
-    cy.visit(APP_URL)
-    cy.get('[data-test=login-button]').click()
-    cy.get('[data-test=login-form]')
-
-    cy.get('[data-test=modal-overlay]').click('top')
 
     cy.get('[data-test=login-form]').should('not.exist')
   })
@@ -62,5 +52,15 @@ describe('Home Modal', () => {
     cy.get('[data-test=login-form]').click()
 
     cy.get('[data-test=login-form]')
+  })
+
+  it('should close modal when clicks overlay', () => {
+    cy.visit(APP_URL)
+    cy.get('[data-test=login-button]').click()
+    cy.get('[data-test=login-form]')
+
+    cy.get('[data-test=modal-overlay]').click('topLeft')
+    cy.wait(2000)
+    cy.get('[data-test=login-form]').should('not.exist')
   })
 })
