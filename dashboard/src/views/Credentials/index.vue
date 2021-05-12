@@ -36,7 +36,11 @@
         <span v-if="state.hasError" class="text-brand-danger font-bold">
           Erro ao carregar a chave de api
         </span>
-        <pre v-else class="overflow-x-auto" data-test="api-key">{{ store.User.currentUser.apiKey }}</pre>
+        <pre
+          v-else
+          class="overflow-x-auto"
+          data-test="api-key"
+        >{{ store.User.currentUser.apiKey }}</pre>
         <div class="flex ml-4 md:ml-20 mr-1" v-if="!state.hasError">
           <icon
             name="copy"
@@ -44,6 +48,7 @@
             size="24"
             class="cursor-pointer"
             @click="() => handleCopy(store.User.currentUser.apiKey)"
+            data-test="copy-api-key"
           />
           <icon
             name="loading"
@@ -75,7 +80,11 @@
         <span v-if="state.hasError" class="text-brand-danger font-bold">
           Erro ao carregar o script
         </span>
-        <pre v-else class="overflow-x-scroll">{{ computedScript }}</pre>
+        <pre
+          v-else
+          class="overflow-x-scroll"
+          data-test="script"
+        >{{ computedScript }}</pre>
         <div class="flex ml-4 md:ml-20 mr-1" v-if="!state.hasError">
           <icon
             name="copy"
@@ -83,6 +92,7 @@
             size="24"
             class="cursor-pointer"
             @click="() => handleCopy(computedScript)"
+            data-test="copy-script"
           />
         </div>
       </div>
