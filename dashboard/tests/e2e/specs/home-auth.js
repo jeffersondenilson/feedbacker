@@ -41,7 +41,8 @@ describe('Home Auth', () => {
     cy.register(' ', 'me@me.com', '123')
 
     cy.get('[data-test=name-error-message]')
-    cy.get('[data-test=create-account-submit-button]').should('be.disabled')
+    cy.get('[data-test=create-account-submit-button]')
+      .should('be.disabled')
   })
 
   it('should show an error with invalid email on ModalCreateAccount', () => {
@@ -50,7 +51,8 @@ describe('Home Auth', () => {
     cy.register('me', 'meme.com', '123')
 
     cy.get('[data-test=email-error-message]')
-    cy.get('[data-test=create-account-submit-button]').should('be.disabled')
+    cy.get('[data-test=create-account-submit-button]')
+      .should('be.disabled')
   })
 
   it('should show an error with invalid password on ModalCreateAccount', () => {
@@ -59,7 +61,8 @@ describe('Home Auth', () => {
     cy.register('me', 'me@me.com', '1')
 
     cy.get('[data-test=password-error-message]')
-    cy.get('[data-test=create-account-submit-button]').should('be.disabled')
+    cy.get('[data-test=create-account-submit-button]')
+      .should('be.disabled')
   })
 
   it('should logout correctly', () => {
@@ -70,5 +73,13 @@ describe('Home Auth', () => {
     cy.get('[data-test=logout-button]').click()
 
     cy.url().should('eq', `${APP_URL}/`)
+  })
+
+  it('should have username on logout button', () => {
+    cy.visit(APP_URL)
+    cy.login('igor@igor.me', '1234')
+
+    cy.get('[data-test=logout-button]').invoke('text')
+      .should('equal', 'Igor Halfeld (sair)')
   })
 })
