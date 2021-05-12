@@ -34,6 +34,7 @@
     "@vue/eslint-config-standard": "^5.1.2",
     "@vue/test-utils": "2.0.0-rc.6",
     "babel-eslint": "^10.1.0",
+    "clipboardy": "2.3.0",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-node": "^11.1.0",
