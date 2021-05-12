@@ -44,7 +44,7 @@ describe('Credentials', () => {
     })
   })
 
-  it.only('should copy script', () => {
+  it('should copy script', () => {
     cy.visit(APP_URL)
     cy.login('igor@igor.me', '1234')
     cy.get('[data-test=credentials-link]').click()
