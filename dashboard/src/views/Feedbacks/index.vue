@@ -59,6 +59,7 @@
           :is-opened="index === 0"
           :feedback="feedback"
           class="mb-8"
+          data-test="feedback-cards"
         />
         <feedback-card-loading v-if="state.isLoadingMoreFeedbacks" />
       </div>

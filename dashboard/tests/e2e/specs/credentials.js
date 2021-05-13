@@ -1,5 +1,5 @@
 const APP_URL = process.env.APP_URL || 'http://localhost:8080'
-
+// TODO: logar no before each
 describe('Credentials', () => {
   it('should generate an api key', () => {
     cy.visit(APP_URL)

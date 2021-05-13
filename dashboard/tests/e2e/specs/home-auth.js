@@ -1,5 +1,5 @@
 const APP_URL = process.env.APP_URL || 'http://localhost:8080'
-// TODO: verificar nome de usuário logado
+
 describe('Home Auth', () => {
   it('should login with email and password', () => {
     cy.visit(APP_URL)
