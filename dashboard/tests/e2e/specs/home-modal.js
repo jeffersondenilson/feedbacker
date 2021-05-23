@@ -60,7 +60,6 @@ describe('Home Modal', () => {
     cy.get('[data-test=login-form]')
 
     cy.get('[data-test=modal-overlay]').click('topLeft')
-    cy.wait(2000)
     
     cy.get('[data-test=login-form]').should('not.exist')
   })

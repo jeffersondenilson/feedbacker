@@ -1,5 +1,6 @@
 const baseUrl = process.env.APP_URL || 'http://localhost:8080'
 const APP_URL = `${baseUrl}/feedbacks`
+import { LABELS } from '../../../src/utils/constants.js'
 
 describe('Feedbacks', () => {
   beforeEach(() => {
@@ -27,29 +28,25 @@ describe('Feedbacks', () => {
     cy.get('[data-test=feedback-cards]').should('have.length.gt', 5)
   })
 
-  // TODO: esperar todas as requests serem resolvidas
   it('should not load more feedbacks when reached total', () => {
     cy.visit(APP_URL)
-    cy.wait(5000)
+    cy.get('[data-test=feedback-cards]').should('have.length', 5)
     cy.scrollTo('bottom')
-    cy.wait(5000)
+    cy.get('[data-test=feedback-cards]').should('have.length', 7)
 
-    cy.get('[data-test=feedback-cards]').then(prevCards => {
-      cy.scrollTo('bottom')
-      cy.wait(5000)
-      cy.get('[data-test=feedback-cards]')
-        .should('not.have.length.gt', prevCards.length)
-    })
+    cy.scrollTo('bottom')
+
+    cy.get('[data-test=feedback-cards]').should('have.length', 7)
   })
 
-  it.only('should load only feedbacks of type issue', () => {
+  it('should load only feedbacks of type issue', () => {
     cy.visit(APP_URL)
 
     cy.get('[data-test-filter-type=issue]').click()
     cy.get('[data-test=feedback-cards] [data-test=badge]')
       .then(badges => {
-        // const q = Array.from(badges)
-        console.log(badges)
+        const expected = LABELS.issue.repeat(badges.length)
+        expect(badges.text()).to.eq(expected)
       })
   })
 })
